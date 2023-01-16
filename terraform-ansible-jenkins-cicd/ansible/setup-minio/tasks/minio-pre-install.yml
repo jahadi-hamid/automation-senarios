@@ -1,0 +1,16 @@
+- name: Add minio servers to hosts
+  lineinfile:
+    path: /etc/hosts
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+  loop: "{{ lookup('file', 'files/minio.hosts').splitlines() }}"
+
+- name: Minio latest release
+  set_fact:
+    _minio_download_url: "{{ minio_base_url }}/linux-{{ os_arch }}/minio"
+  when: minio_release | length == 0
+
+- name: "minio url with release {{ minio_release }}"
+  set_fact:
+    _minio_download_url: "{{ minio_base_url }}/linux-{{ os_arch }}/archive/minio.{{ minio_release }}"
+  when: minio_release | length > 0

@@ -1,0 +1,30 @@
+- name: Create minio group
+  group:
+    name: "{{ minio_group }}"
+    state: present
+
+- name: Create minio user
+  user:
+    name: "{{ minio_user }}"
+    group: "{{ minio_group }}"
+    system: "yes"
+    shell: "/usr/sbin/nologin"
+
+- name: Create minio storage minio path
+  file:
+    path: "{{ minio_storage_path }}"
+    state: directory
+    owner: "{{ minio_user }}"
+    group: "{{ minio_group }}"
+    mode: 0755
+
+
+- name: Get minio binary file
+  get_url:
+    url: "{{ _minio_download_url }}"
+    dest: "{{ minio_bin_path }}"
+    owner: "root"
+    group: "root"
+    timeout: 60
+    mode: 0755
+

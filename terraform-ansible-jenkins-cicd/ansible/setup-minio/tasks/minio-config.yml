@@ -1,0 +1,25 @@
+- name: Create minio envfile
+  template:
+    src: minio.env.jinja2
+    dest: "{{ minio_env_path }}"
+    owner: "root"
+    group: "{{ minio_group }}"
+    mode: 0640
+  notify: restart minio
+
+- name: Create minio systemd service
+  template:
+    src: minio.service.jinja2
+    dest: "{{ minio_svc_path }}"
+    owner: "root"
+    group: "root"
+  notify:
+    - reload minio systemd
+    - restart minio
+
+
+- name: Enable and start minio service
+  service:
+    name: minio
+    state: started
+    enabled: true

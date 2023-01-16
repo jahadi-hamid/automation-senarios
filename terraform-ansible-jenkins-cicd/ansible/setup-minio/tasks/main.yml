@@ -1,0 +1,8 @@
+---
+# tasks file for minio-setup
+- include_tasks: minio-pre-install.yml
+  tags: pre-install
+- include_tasks: minio-install.yml
+  tags: install
+- include_tasks: minio-config.yml
+  tags: config

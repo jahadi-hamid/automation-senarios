@@ -1,0 +1,5 @@
+---
+- hosts: minioServers
+  become: true
+  roles:
+    - setup-minio
