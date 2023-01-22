@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+            <p>Share your text :</p>
+            <a><a href="{{ obj_url }}">{{ obj_url }}</a>
+            <br />
+            <br />
+            <textarea name="data" id="list_urls" cols="50" rows="40" disabled="true">{{ obj_data }}</textarea>
+            <br />
+            <br />
+            <div class="url-button">
+                <a  href="/"><input type= "button" value="New Paste"></input></a>
+            </div>
+            <br/>
+          
+          <style>
+              textarea {	
+                  -webkit-box-sizing: border-box;
+                  -moz-box-sizing: border-box;
+                  box-sizing: border-box;	
+                  width: 100%;
+                  height: 80%;
+                  box-shadow: inset 0 0 5px black;
+                  }
+              .url-button{
+                  display:block;
+                  text-align:center;
+              }
+          
+              .url-button input{
+                  background-color: #2980b9;
+                  border: 1px solid #d1d1d1;
+                  padding:10px;
+                  border-radius:5px;
+                  width:100px;
+                  color:#fff;
+              }
+          </style>
+
+    </body>
+</html>
