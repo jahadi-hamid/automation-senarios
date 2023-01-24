@@ -14,3 +14,31 @@
   set_fact:
     _minio_download_url: "{{ minio_base_url }}/linux-{{ os_arch }}/archive/minio.{{ minio_release }}"
   when: minio_release | length > 0
+
+- name: Create minio drives
+  community.general.filesize:
+    path: "{{ item.mount_src }}"
+    size: 1G
+  with_items: "{{ minio_drive }}"
+
+- name: Create a ext4 filesystem
+  filesystem:
+    fstype: ext4
+    dev: "{{ item.mount_src }}"
+  with_items: "{{ minio_drive }}"
+
+- name: Create minio mount point
+  file:
+    path: "{{ item.mount_point }}"
+    state: directory
+    mode: 0755
+  with_items: "{{ minio_drive }}"
+
+- name: Mount minio data volume
+  ansible.posix.mount:
+    src: "{{ item.mount_src }}"
+    path: "{{ item.mount_point}}"
+    opts: defaults
+    state: mounted
+    fstype: ext4
+  with_items: "{{ minio_drive }}"

@@ -6,7 +6,7 @@ minio_inventory_groupname: "MinioServers"
 minio_fqdn: "minio.cluster.local"
 minio_bin_path: /usr/local/bin/minio
 minio_env_path: /etc/default/minio
-minio_storage_path: /data/
+minio_storage_path: /data
 minio_user: minio
 minio_group: minio
 minio_svc_path: /etc/systemd/system/minio.service
@@ -14,3 +14,9 @@ minio_access_key: "sdf3vfa65asdfa"
 minio_secret_key: "asdf456vfgHasdfg415YT"
 minio_server_env_extra: ""
 minio_server_opts: ""
+minio_drive:
+  - {mount_src: /var/drive0, mount_point: /data0}
+  - {mount_src: /var/drive1, mount_point: /data1}
+  - {mount_src: /var/drive2, mount_point: /data2}
+  - {mount_src: /var/drive3, mount_point: /data3}
+ 

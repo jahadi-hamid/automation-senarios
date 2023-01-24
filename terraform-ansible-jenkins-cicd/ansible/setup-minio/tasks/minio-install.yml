@@ -1,23 +1,37 @@
 - name: Create minio group
   group:
     name: "{{ minio_group }}"
+    system: true
     state: present
 
 - name: Create minio user
   user:
     name: "{{ minio_user }}"
     group: "{{ minio_group }}"
-    system: "yes"
+    system: true
+    create_home: false
     shell: "/usr/sbin/nologin"
+- name: stop minio
+  service:
+    name: minio
+    state: stopped
+  ignore_errors: true
+
+- name: remove minio storage minio path
+  file:
+    path: "{{ item.mount_point }}/minio"
+    state: absent
+  with_items: "{{ minio_drive }}"
 
 - name: Create minio storage minio path
   file:
-    path: "{{ minio_storage_path }}"
+    path: "{{ item.mount_point }}/minio"
     state: directory
+    recurse: true
     owner: "{{ minio_user }}"
     group: "{{ minio_group }}"
     mode: 0755
-
+  with_items: "{{ minio_drive }}"
 
 - name: Get minio binary file
   get_url:

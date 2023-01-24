@@ -1,6 +1,6 @@
 ---
 # handlers file for setup-minio
-- name: reload systemd daemon
+- name: reload minio systemd
   systemd:
     name: minio
     daemon_reload: true
@@ -9,4 +9,5 @@
   service:
     name: minio
     state: restarted
+    enabled: true
 

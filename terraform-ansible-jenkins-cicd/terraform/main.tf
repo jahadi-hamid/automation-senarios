@@ -45,7 +45,7 @@ resource "local_file" "minio_hosts" {
   depends_on = [
     module.abrak-module
   ]
-  filename = "minio.hosts"
+  filename = "../ansible/setup-minio/files/minio.hosts"
   content = templatefile("minio.hosts.tmpl",
     {
       minio_hostname = module.abrak-module.*.details-myabrak-id.name,
@@ -69,6 +69,6 @@ resource "local_file" "ansible_inventory" {
     }
   )
    provisioner "local-exec" {
-    command = "ansible-playbook -i inventory ../ansible/setup-minio.yml "
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory ../ansible/setup-minio.yml "
   } 
 }

@@ -1,6 +1,6 @@
 variable "ApiKey" {
   type      = string
-  default   = "Apikey **********"
+  default   = "Apikey ***"
   sensitive = true
 }
 variable "region" {
