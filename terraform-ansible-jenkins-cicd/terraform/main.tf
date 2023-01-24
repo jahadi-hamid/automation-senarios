@@ -39,7 +39,7 @@ resource "local_file" "minio_hosts" {
     module.abrak-module
   ]
   filename = "../ansible/setup-minio/files/minio.hosts"
-  content = templatefile("minio.hosts.tmpl",
+  content = templatefile("templates/minio.hosts.tmpl",
     {
       minio_hostname = module.abrak-module.*.details-myabrak-id.name,
       minio_prvip    = module.abrak-module.*.privateip,
@@ -52,7 +52,7 @@ resource "local_file" "ansible_inventory" {
     module.abrak-module
   ]
   filename = "inventory"
-  content = templatefile("inventory.tmpl",
+  content = templatefile("templates/inventory.tmpl",
     {
       ansible_ip       = module.abrak-module.*.publicip,
       ansible_hostname = module.abrak-module.*.details-myabrak-id.name,
