@@ -5,3 +5,7 @@ output "mynet-ip-range" {
 output "subnet-details" {
   value = arvan_iaas_subnet.mysubnet
 }
+
+output "get-ssh-key" {
+  value = arvan_iaas_sshkey.myabrak-sshkey
+}

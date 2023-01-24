@@ -1,15 +1,9 @@
-
-module "abrak-sshkey-module" {
-  source         = "./modules/ssh-key"
-  sshkey-region  = var.region
-  ssh-public_key = file("${var.key_path}.pub")
-}
-
-module "abrak-subnet-module" {
-  network-region = var.region
-  source         = "./modules/private-network"
+module "abrak-ssh-net-module" {
+  net-ssh-region = var.region
+  source         = "./modules/ssh-prvnetwork"
   subnet_name    = var.cluster_name
   ip_range       = var.ip_range
+  ssh-public_key = file("${var.key_path}.pub")
 }
 
 module "abrak-module" {
@@ -17,13 +11,12 @@ module "abrak-module" {
   abrak-region = var.region
   source       = "./modules/abrak/ubuntu22"
   depends_on = [
-    module.abrak-sshkey-module,
-    module.abrak-subnet-module
+    module.abrak-ssh-net-module
   ]
   abrak-number = count.index
   abrak-name   = "${var.cluster_name}-${count.index}"
-  ssh-keyname  = module.abrak-sshkey-module.get-ssh-key.name
-  network_uuid = module.abrak-subnet-module.subnet-details.network_uuid
+  ssh-keyname  = module.abrak-ssh-net-module.get-ssh-key.name
+  network_uuid = module.abrak-ssh-net-module.subnet-details.network_uuid
   ip_range     = var.ip_range
 }
 
