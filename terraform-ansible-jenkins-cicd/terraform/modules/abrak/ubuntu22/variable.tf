@@ -32,3 +32,6 @@ variable "network_uuid" {
 variable "ip_range" {
 
 }
+variable "extraip" {
+  type = bool
+}

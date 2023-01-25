@@ -1,6 +1,6 @@
 module "abrak-ssh-net-module" {
   net-ssh-region = var.region
-  source         = "./modules/ssh-prvnetwork"
+  source         = "../../modules/ssh-prvnetwork"
   subnet_name    = var.cluster_name
   ip_range       = var.ip_range
   ssh-public_key = file("${var.key_path}.pub")
@@ -9,7 +9,7 @@ module "abrak-ssh-net-module" {
 module "abrak-module" {
   count        = var.server-num
   abrak-region = var.region
-  source       = "./modules/abrak/ubuntu22"
+  source       = "../../modules/abrak/ubuntu22"
   depends_on = [
     module.abrak-ssh-net-module
   ]
@@ -18,6 +18,7 @@ module "abrak-module" {
   ssh-keyname  = module.abrak-ssh-net-module.get-ssh-key.name
   network_uuid = module.abrak-ssh-net-module.subnet-details.network_uuid
   ip_range     = var.ip_range
+  extraip = false
 }
 
 /* # add extra public ip
@@ -39,7 +40,7 @@ resource "local_file" "minio_hosts" {
     module.abrak-module
   ]
   filename = "../ansible/setup-minio/files/minio.hosts"
-  content = templatefile("templates/minio.hosts.tmpl",
+  content = templatefile("../../templates/minio.hosts.tmpl",
     {
       minio_hostname = module.abrak-module.*.details-myabrak-id.name,
       minio_prvip    = module.abrak-module.*.privateip,
@@ -52,7 +53,7 @@ resource "local_file" "ansible_inventory" {
     module.abrak-module
   ]
   filename = "inventory"
-  content = templatefile("templates/inventory.tmpl",
+  content = templatefile("../../templates/inventory.tmpl",
     {
       ansible_ip       = module.abrak-module.*.publicip,
       ansible_hostname = module.abrak-module.*.details-myabrak-id.name,
@@ -61,7 +62,7 @@ resource "local_file" "ansible_inventory" {
       username         = var.user_name
     }
   )
-   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory ../ansible/setup-minio.yml "
-  } 
+  #  provisioner "local-exec" {
+  #   command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory ../ansible/setup-minio.yml "
+  # } 
 }

@@ -16,10 +16,3 @@ resource "arvan_iaas_subnet" "mysubnet" {
   ]
   enable_dhcp = false
 }
-
-resource "arvan_iaas_abrak_action" "myabrak-publicip" {
-  count =  var.extraip ? 1 : 0
-  action     = "add-public-ip"
-  region     = var.region-publicip
-  abrak_uuid = var.myabrak_uuid
-}

@@ -13,7 +13,7 @@ variable "key_path" {
 }
 variable "server-num" {
   type    = number
-  default = 4
+  default = 1
 }
 variable "user_name" {
   type    = string

@@ -12,3 +12,7 @@ output "publicip" {
 output "privateip" {
   value = arvan_iaas_network_attach.private-network-attach.ip
 }
+
+output "myabrak-publicip" {
+  value = arvan_iaas_abrak_action.myabrak-publicip
+}

@@ -20,3 +20,10 @@ resource "arvan_iaas_network_attach" "private-network-attach" {
   ip           = cidrhost("${var.ip_range}", "${var.abrak-number + 2}")
 
 }
+
+resource "arvan_iaas_abrak_action" "myabrak-publicip" {
+  count =  var.extraip ? 1 : 0
+  action     = "add-public-ip"
+  region     = var.abrak-region
+  abrak_uuid = data.arvan_iaas_abrak.get_abrak_id.id
+}
