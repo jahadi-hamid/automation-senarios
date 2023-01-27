@@ -14,5 +14,5 @@ output "privateip" {
 }
 
 output "myabrak-publicip" {
-  value = arvan_iaas_abrak_action.myabrak-publicip
+  value = arvan_iaas_abrak_action.myabrak-extrapublicip
 }

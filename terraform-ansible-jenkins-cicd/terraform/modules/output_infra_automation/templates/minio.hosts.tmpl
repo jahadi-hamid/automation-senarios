@@ -1,0 +1,3 @@
+%{ for index,v in hosts_hostname ~}
+${hosts_prvip[index]} ${hosts_hostname[index]}
+%{ endfor ~}

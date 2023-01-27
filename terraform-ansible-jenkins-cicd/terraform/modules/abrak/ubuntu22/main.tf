@@ -21,7 +21,7 @@ resource "arvan_iaas_network_attach" "private-network-attach" {
 
 }
 
-resource "arvan_iaas_abrak_action" "myabrak-publicip" {
+resource "arvan_iaas_abrak_action" "myabrak-extrapublicip" {
   count =  var.extraip ? 1 : 0
   action     = "add-public-ip"
   region     = var.abrak-region

@@ -1,0 +1,14 @@
+- name: Copy ssh key
+  copy:
+    src: /root/.ssh/proxy_rsa
+    dest: /root/.ssh/id_rsa
+    mode: 0600
+
+- name: Copy tmux proxy
+  copy:
+    src: proxy.sh
+    dest: /opt/proxy.sh
+    mode: 0755
+
+- name: run tmux
+  command: /opt/proxy.sh
