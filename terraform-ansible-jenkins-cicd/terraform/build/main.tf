@@ -79,13 +79,13 @@ resource "local_file" "jenkins_ansible_inventory" {
   )
 
 }
-resource "time_sleep" "wait_30_seconds" {
+resource "time_sleep" "wait_60_seconds" {
   depends_on = [local_file.jenkins_ansible_inventory]
 
-  create_duration = "30s"
+  create_duration = "60s"
 }
 resource "null_resource" "ansible_run" {
-  depends_on = [time_sleep.wait_30_seconds]
+  depends_on = [time_sleep.wait_60_seconds]
     provisioner "local-exec" {
      command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ${var.home_project}/ansible/setup-jenkins/inventory ${var.home_project}/ansible/setup-jenkins.yml "
    } 

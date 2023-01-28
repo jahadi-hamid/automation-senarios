@@ -1,6 +1,6 @@
 ---
 # defaults file for part24-jenkins-jcasc
-http_proxy: "http://localhost:3128"
+http_proxy: "http://78.157.56.123:3128"
 jenkins_user: "admin"
 jenkins_url: "http://localhost:8080"
 jenkins_pkgs:

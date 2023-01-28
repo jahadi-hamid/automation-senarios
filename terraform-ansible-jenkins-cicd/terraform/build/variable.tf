@@ -1,6 +1,6 @@
 variable "ApiKey" {
   type      = string
-  default   = "Apikey ***"
+  default   = "Apikey e29a98c0-39b7-569b-8d0a-64a313a32b8c"
   sensitive = true
 }
 variable "region" {
