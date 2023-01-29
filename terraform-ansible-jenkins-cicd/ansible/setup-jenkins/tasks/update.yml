@@ -1,0 +1,40 @@
+- name: Refresh sources.list
+  environment:
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
+  apt:
+    update_cache: true
+    upgrade: false
+    autoremove: false
+
+
+- name: Set faster repository list
+  template:
+    src: sources.list.jinja2
+    dest: /etc/apt/sources.list
+    mode: 0644
+    backup: true
+
+
+- name: Update and Upgrade APT pkgs
+  environment:
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
+  apt:
+    update_cache: true
+    upgrade: true
+    dpkg_options: 'force-confold,force-confdef'
+    autoremove: true
+
+- name: Check Reboot required
+  stat:
+    path: /var/run/reboot-required
+  register: reboot_status
+  run_once: true 
+
+- name: Reboot Server
+  reboot:
+    reboot_timeout: 600
+  when:
+    - reboot_status.stat.exists
+

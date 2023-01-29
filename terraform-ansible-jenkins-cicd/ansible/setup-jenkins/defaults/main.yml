@@ -19,6 +19,25 @@ jk_plugins:
   branch-api:
     enabled: True
   job-dsl:
-    version: 1.79
+    #version: 1.79
     enabled: true
     pinned: true
+  mina-sshd-api-common:
+    enabled: true  
+  mina-sshd-api-core:
+    enabled: true
+  trilead-api:  
+  display-url-api:
+  workflow-scm-step:
+  workflow-step-api:
+  credentials-binding:
+  credentials:
+  jakarta-activation-api:
+  jakarta-mail-api:
+  apache-httpcomponents-client-4-api:
+  mailer:
+  git-client:
+  scm-api:
+  ssh-credentials:
+  git:
+    enabled: true

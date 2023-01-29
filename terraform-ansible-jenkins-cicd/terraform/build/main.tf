@@ -63,6 +63,7 @@ module "jenkins-vm" {
   ssh-keyname  = module.infra-ssh-net-module.get-ssh-key.name
   network_uuid = module.infra-ssh-net-module.subnet-details.network_uuid
   ip_range     = var.ip_range
+  os-version   = "20.04"
   extraip = false
 }
 

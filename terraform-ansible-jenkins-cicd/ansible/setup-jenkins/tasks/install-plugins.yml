@@ -1,4 +1,8 @@
 - name: Install the plugin
+  environment:
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
+    no_proxy: "localhost"
   jenkins_plugin:
     url_username: "{{ jenkins_user }}"
     url_password: "{{ jenkins_password }}"
@@ -10,6 +14,10 @@
   with_dict: "{{ jk_plugins }}"
 
 - name: Install specific version of the plugin
+  environment:
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
+    no_proxy: "localhost"
   jenkins_plugin:
     url_username: "{{ jenkins_user }}"
     url_password: "{{ jenkins_password }}"
