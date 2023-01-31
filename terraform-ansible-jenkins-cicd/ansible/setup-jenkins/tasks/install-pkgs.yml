@@ -5,7 +5,8 @@
   apt:
     force: yes
     autoremove: yes
-    pkg: "{{ jenkins_pkgs }}"
+    pkg: "{{ item }}"
+  with_items: "{{ jenkins_pkgs }}"
 
 - name: Get jenkins admin Password
   command: "cat  /var/lib/jenkins/secrets/initialAdminPassword"
