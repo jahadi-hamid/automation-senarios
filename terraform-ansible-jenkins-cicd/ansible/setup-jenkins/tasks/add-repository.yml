@@ -1,6 +1,9 @@
 
 
 - name: Get Apt-Key Jenkins
+  environment:
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
   get_url:
     url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
     dest: /usr/share/keyrings/jenkins-keyring.asc

@@ -1,12 +1,18 @@
-- name: Installing Jenkins pkgs
+- name: Installing PreReq pkgs
   environment:
     http_proxy: "{{ http_proxy }}"
     https_proxy: "{{ http_proxy }}"
   apt:
-    force: yes
     autoremove: yes
-    pkg: "{{ item }}"
-  with_items: "{{ jenkins_pkgs }}"
+    pkg: "{{ pre_pkgs }}"
+
+- name: Installing jenkins pkgs
+  environment:
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
+  apt:
+    autoremove: yes
+    pkg: "{{ jenkins_pkgs }}"
 
 - name: Get jenkins admin Password
   command: "cat  /var/lib/jenkins/secrets/initialAdminPassword"
