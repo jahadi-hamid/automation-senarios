@@ -1,3 +1,15 @@
+- name: Get jenkins admin Password
+  command: "cat  /var/lib/jenkins/secrets/initialAdminPassword"
+  register:  out
+
+- name: Set Password Variable
+  set_fact:
+    jenkins_password: "{{ out.stdout }}"
+
+- name: debug
+  debug:
+    msg: "password: {{jenkins_password}}"
+    
 - name: Install the plugin
   environment:
     http_proxy: "{{ http_proxy }}"

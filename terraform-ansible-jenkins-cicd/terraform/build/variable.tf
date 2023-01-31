@@ -23,5 +23,5 @@ variable "ip_range" {
 }
 variable "home_project" {
   type = string
-  default = "/home/hamidj/MyGitRepo/automation-senarios/terraform-ansible-jenkins-cicd"
+  default = "/home/h.jahadi/MyGitRepo/automation-senarios/terraform-ansible-jenkins-cicd"
 }

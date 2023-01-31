@@ -11,17 +11,19 @@
     http_proxy: "{{ http_proxy }}"
     https_proxy: "{{ http_proxy }}"
   apt:
-    autoremove: yes
+    autoremove: true
+    policy_rc_d: 101 
     pkg: "{{ jenkins_pkgs }}"
 
-- name: Get jenkins admin Password
-  command: "cat  /var/lib/jenkins/secrets/initialAdminPassword"
-  register:  out
+- name: Increase Start jenkins-Service Timeout
+  lineinfile:
+    path: /lib/systemd/system/jenkins.service
+    insertafter: '^\[Service\]'
+    regexp: 'TimeoutStartSec'
+    line: '^TimeoutStartSec=300$'
+  notify: 
+    - reload jenkins systemd
+    - restart jenkins
 
-- name: Set Password Variable
-  set_fact:
-    jenkins_password: "{{ out.stdout }}"
+- meta: flush_handlers
 
-- name: debug
-  debug:
-    msg: "password: {{jenkins_password}}"

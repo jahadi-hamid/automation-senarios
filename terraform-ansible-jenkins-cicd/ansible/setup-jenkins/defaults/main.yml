@@ -28,17 +28,58 @@ jk_plugins:
   mina-sshd-api-core:
     enabled: true
   trilead-api:  
+    enabled: True
   display-url-api:
+    enabled: True
   workflow-scm-step:
+    enabled: True
   workflow-step-api:
+    enabled: True
+  plain-credentials:
+    enabled: True
   credentials-binding:
+    enabled: True
   credentials:
+    enabled: True
   jakarta-activation-api:
+    enabled: True
   jakarta-mail-api:
+    enabled: True
   apache-httpcomponents-client-4-api:
+    enabled: True
   mailer:
+    enabled: True
   git-client:
+    enabled: True
   scm-api:
+    enabled: True
   ssh-credentials:
+    enabled: True
   git:
+    enabled: true
+  commons-text-api:
+    enabled: true
+  snakeyaml-api:
+    enabled: true
+  caffeine-api:
+    enabled: true
+  ionicons-api:
+    enabled: true
+  cloudbees-folder:
+    enabled: true
+  bouncycastle-api:
+    enabled: true
+  instance-identity:
+    enabled: true
+  okhttp-api:
+    enabled: true
+  github-api:
+    enabled: true
+  jackson2-api:
+    enabled: true
+  jaxb:
+    enabled: true
+  token-macro:
+    enabled: true
+  github:
     enabled: true
