@@ -4,7 +4,9 @@
   tags: update
 - import_tasks: add-repository.yml
   tags: add-repo
-- import_tasks: install-pkgs.yml
-  tags: install
+- import_tasks: install-jenkins.yml
+  tags: jenkins
 - import_tasks: install-plugins.yml
-  tags: plugin
+  tags: jenkins-plugin
+- import_tasks: install-docker.yml
+  tags: docker

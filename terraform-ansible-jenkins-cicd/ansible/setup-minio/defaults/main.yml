@@ -2,7 +2,6 @@
 # defaults file for setup-minio
 minio_base_url: https://dl.min.io/server/minio/release
 minio_release: ""
-minio_inventory_groupname: "MinioServers"
 minio_fqdn: "minio.cluster.local"
 minio_bin_path: /usr/local/bin/minio
 minio_env_path: /etc/default/minio

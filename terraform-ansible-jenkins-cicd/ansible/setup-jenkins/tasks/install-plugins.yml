@@ -82,3 +82,13 @@
     jenkins_restart_required: false
   when: jenkins_restart_required
 
+- name: Plugin enabling
+  jenkins_plugin:
+    url_username: "{{ jenkins_user }}"
+    url_password: "{{ jenkins_password }}"
+    url: "{{ jenkins_url }}"
+    name: "{{ item.key }}"
+    state: "{{ 'enabled' if item.value['enabled'] else 'disabled'}}"
+  when: >
+    'enabled' in item.value
+  with_dict: "{{ jk_plugins }}"

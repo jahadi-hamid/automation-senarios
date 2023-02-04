@@ -1,17 +1,10 @@
-output "minio_cluster_hostnames-ips" {
+output "cluster_hostnames-ips" {
   value = [
-    for index, v in module.minio-cluster.* :
-    { "server-ip" : v.publicip,
-      "server-name" : module.minio-cluster[index].details-myabrak-id.name
+    for index, v in module.cluster-vm.* : {
+      "name" : v.*.cluster-details-myabrak-id  
+      "public-ip" : v.*.cluster-publicip
+      "private-ip" : v.*.cluster-privateip
     }
   ]
 }
 
-output "jenkins_hostnames-ips" {
-  value = [
-    for index, v in module.jenkins-vm.* :
-    { "server-ip" : v.publicip,
-      "server-name" : module.jenkins-vm[index].details-myabrak-id.name
-    }
-  ]
-}

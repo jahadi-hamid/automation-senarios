@@ -4,10 +4,17 @@ http_proxy: "http://78.157.56.123:3128"
 jenkins_user: "admin"
 jenkins_url: "http://localhost:8080"
 pre_pkgs:
+  - apt-transport-https
+  - git
   - fontconfig
   - openjdk-11-jre
 jenkins_pkgs:
   - jenkins
+docker_pkgs:
+  - docker-ce
+  - containerd.io
+  - docker-ce-cli
+  - docker-compose-plugin
 jk_plugins:
   configuration-as-code:
     enabled: true

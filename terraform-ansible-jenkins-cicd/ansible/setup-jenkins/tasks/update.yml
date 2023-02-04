@@ -16,15 +16,15 @@
     backup: true
 
 
-- name: Update and Upgrade APT pkgs
-  environment:
-    http_proxy: "{{ http_proxy }}"
-    https_proxy: "{{ http_proxy }}"
-  apt:
-    update_cache: true
-    upgrade: true
-    dpkg_options: 'force-confold,force-confdef'
-    autoremove: true
+# - name: Update and Upgrade APT pkgs
+#   environment:
+#     http_proxy: "{{ http_proxy }}"
+#     https_proxy: "{{ http_proxy }}"
+#   apt:
+#     update_cache: true
+#     upgrade: true
+#     dpkg_options: 'force-confold,force-confdef'
+#     autoremove: true
 
 - name: Check Reboot required
   stat:

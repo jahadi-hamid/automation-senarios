@@ -35,3 +35,6 @@ variable "ip_range" {
 variable "extraip" {
   type = bool
 }
+variable "ip_index" {
+  type = number
+}

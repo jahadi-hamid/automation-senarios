@@ -1,3 +1,4 @@
+
 resource "arvan_iaas_abrak" "myabrak" {
   region = var.abrak-region
   flavor = var.abrak-plan
@@ -17,7 +18,7 @@ resource "arvan_iaas_network_attach" "private-network-attach" {
   region       = var.abrak-region
   abrak_uuid   = data.arvan_iaas_abrak.get_abrak_id.id
   network_uuid = var.network_uuid
-  ip           = cidrhost("${var.ip_range}", "${var.abrak-number + 2}")
+  ip           = cidrhost("${var.ip_range}", "${var.ip_index + var.abrak-number + 2}")
 
 }
 
