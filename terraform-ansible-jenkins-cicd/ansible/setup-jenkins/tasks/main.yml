@@ -8,5 +8,7 @@
   tags: jenkins
 - import_tasks: install-plugins.yml
   tags: jenkins-plugin
+- import_tasks: jenkins-jcasc.yml
+  tags: jcasc
 - import_tasks: install-docker.yml
   tags: docker

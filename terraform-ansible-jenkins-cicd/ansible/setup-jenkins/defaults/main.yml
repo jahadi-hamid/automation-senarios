@@ -3,6 +3,7 @@
 http_proxy: "http://78.157.56.123:3128"
 jenkins_user: "admin"
 jenkins_url: "http://localhost:8080"
+jenkins_home: "/var/lib/jenkins"
 pre_pkgs:
   - apt-transport-https
   - git
@@ -64,29 +65,29 @@ jk_plugins:
     enabled: True
   git:
     enabled: true
-  commons-text-api:
-    enabled: true
-  snakeyaml-api:
-    enabled: true
-  caffeine-api:
-    enabled: true
-  ionicons-api:
-    enabled: true
-  cloudbees-folder:
-    enabled: true
-  bouncycastle-api:
-    enabled: true
-  instance-identity:
-    enabled: true
-  okhttp-api:
-    enabled: true
-  github-api:
-    enabled: true
-  jackson2-api:
-    enabled: true
-  jaxb:
-    enabled: true
-  token-macro:
-    enabled: true
-  github:
-    enabled: true
+  # commons-text-api:
+  #   enabled: true
+  # snakeyaml-api:
+  #   enabled: true
+  # caffeine-api:
+  #   enabled: true
+  # ionicons-api:
+  #   enabled: true
+  # cloudbees-folder:
+  #   enabled: true
+  # bouncycastle-api:
+  #   enabled: true
+  # instance-identity:
+  #   enabled: true
+  # okhttp-api:
+  #   enabled: true
+  # github-api:
+  #   enabled: true
+  # jackson2-api:
+  #   enabled: true
+  # jaxb:
+  #   enabled: true
+  # token-macro:
+  #   enabled: true
+  # github:
+  #   enabled: true

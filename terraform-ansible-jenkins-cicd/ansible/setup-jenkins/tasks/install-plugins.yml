@@ -92,3 +92,4 @@
   when: >
     'enabled' in item.value
   with_dict: "{{ jk_plugins }}"
+  ignore_errors: true

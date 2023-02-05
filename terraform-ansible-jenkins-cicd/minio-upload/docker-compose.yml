@@ -1,0 +1,10 @@
+version: '3'
+services:
+  minio-paste:
+    container_name: minio-upload
+    image: python/minio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
