@@ -21,11 +21,11 @@
     size: 1G
   with_items: "{{ minio_drive }}"
 
-# - name: Create a ext4 filesystem
-#   filesystem:
-#     fstype: ext4
-#     dev: "{{ item.mount_src }}"
-#   with_items: "{{ minio_drive }}"
+- name: Create a ext4 filesystem
+  filesystem:
+    fstype: ext4
+    dev: "{{ item.mount_src }}"
+  with_items: "{{ minio_drive }}"
 
 - name: Create minio mount point
   file:
@@ -34,11 +34,11 @@
     mode: 0755
   with_items: "{{ minio_drive }}"
 
-# - name: Mount minio data volume
-#   ansible.posix.mount:
-#     src: "{{ item.mount_src }}"
-#     path: "{{ item.mount_point}}"
-#     opts: defaults
-#     state: mounted
-#     fstype: ext4
-#   with_items: "{{ minio_drive }}"
+- name: Mount minio data volume
+  ansible.posix.mount:
+    src: "{{ item.mount_src }}"
+    path: "{{ item.mount_point}}"
+    opts: defaults
+    state: mounted
+    fstype: ext4
+  with_items: "{{ minio_drive }}"
