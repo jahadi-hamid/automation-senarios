@@ -93,6 +93,7 @@ unclassified:
     hideCredentials: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
+
 tool:
   git:
     installations:
@@ -101,3 +102,17 @@ tool:
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"
+jobs:
+  - script: >
+      folder('job-dsl') {
+        displayName('Seed All Jobs')
+      }
+  - script: >
+      job('job-dsl/create-all') {
+        steps {
+          jobDsl {
+            targets '**/*.groovy'
+          }
+        }
+        customWorkspace('/var/lib/jenkins/dsl-jobs')
+      }

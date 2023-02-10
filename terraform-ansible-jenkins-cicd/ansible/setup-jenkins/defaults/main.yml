@@ -31,6 +31,26 @@ jk_plugins:
     #version: 1.79
     enabled: true
     pinned: true
+  workflow-job:
+    enabled: true
+  durable-task:
+    enabled: true
+  workflow-durable-task-step:
+    enabled: true
+  workflow-multibranch:
+    enabled: true
+  pipeline-input-step:
+    enabled: true
+  pipeline-model-definition:
+    enabled: true
+  pipeline-stage-step:
+    enabled: true
+  workflow-basic-steps:
+    enabled: true
+  workflow-aggregator:
+    enabled: true
+  pipeline:
+    enabled: true
   mina-sshd-api-common:
     enabled: true  
   mina-sshd-api-core:

@@ -15,6 +15,12 @@
     policy_rc_d: 101 
     pkg: "{{ jenkins_pkgs }}"
 
+- name: Add Jenkins user to Docker group
+  user:
+    name: jenkins
+    groups: docker
+    append: yes
+
 - name: Increase Start jenkins-Service Timeout
   lineinfile:
     path: /lib/systemd/system/jenkins.service
@@ -22,8 +28,8 @@
     regexp: 'TimeoutStartSec'
     line: '^TimeoutStartSec=300$'
   notify: 
-    - reload jenkins systemd
+    - reload systemd
     - restart jenkins
 
-- meta: flush_handlers
 
+- meta: flush_handlers

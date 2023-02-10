@@ -22,3 +22,23 @@
   apt:
     autoremove: true
     pkg: "{{ docker_pkgs }}"
+
+- name: Add http proxy to Docker.service
+  lineinfile:
+    path: /lib/systemd/system/docker.service
+    regexp: '^Environment={{ item }}_PROXY='
+    insertafter: '^Restart=always'
+    line: Environment="{{ item }}_PROXY={{ http_proxy }}"
+  loop: [HTTP,HTTPS]
+  notify: 
+    - reload systemd
+    - restart Docker
+
+- name: Download Docker Compose binary
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: 0755
+
+
+- meta: flush_handlers

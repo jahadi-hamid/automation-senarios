@@ -5,7 +5,7 @@ variable "ApiKey" {
 }
 variable "region" {
   type    = string
-  default = "ir-thr-c1"
+  default = "ir-thr-w1"
 }
 
 variable "ip_range" {
@@ -24,7 +24,7 @@ variable "user_name" {
 
 variable "home_project" {
   type = string
-  default = "/home/hamidj/MyGitRepo/automation-senarios/terraform-ansible-jenkins-cicd"
+  default = "/home/h.jahadi/MyGitRepo/automation-senarios/terraform-ansible-jenkins-cicd"
 }
 
 variable "cluster_ip_index" {

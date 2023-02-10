@@ -10,11 +10,11 @@ module "infra-ssh-net-module" {
 locals {
   module_instances = [{
       name = "minio" 
-      count = 4
+      count = 0
     },
     {
       name = "jenkins" 
-      count = 0
+      count = 1
     },
     {
       name = "worker" 

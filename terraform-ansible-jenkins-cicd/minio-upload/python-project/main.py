@@ -3,15 +3,16 @@ from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from minio import Minio
-import random, string
+import random, string, os
 
 app = FastAPI()
 templates = Jinja2Templates(directory='templates')
 
+
 client = Minio(
         "127.0.0.1:9000",
-        access_key="QDxQNk311LLEzGvF",
-        secret_key="mYwL3SBDSAwwG4FkUd2XhTwtXNchncL4",
+        access_key=os.environ['ACCESSKEY'],
+        secret_key=os.environ['SECRETKEY'],
         secure=False
     )
 

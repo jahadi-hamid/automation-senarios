@@ -18,48 +18,24 @@
     group: jenkins
     mode: 0755
 
+- name: copy jenkins jobs
+  copy:
+    src: jobs/
+    dest: "{{ jenkins_home}}/dsl-jobs/"
+    owner: jenkins
+    group: jenkins
+    mode: 0755
+
 - name: Read existing Jenkins config
   community.general.jenkins_script:
     script: |
-      import io.jenkins.plugins.casc.*
-      import jenkins.model.*
-      import groovy.json.JsonOutput
-
-      CasCGlobalConfig config = GlobalConfiguration.all().get(CasCGlobalConfig.class);
-
-      Boolean changed = false
-      Boolean failed = false
-      String msg = "Success"
-
-      String newConfigPath = "/var/lib/jenkins/jenkins.yaml"
-
-      if(config != null) {
-        String currentConfigPath = config.getConfigurationPath()
-        if (currentConfigPath != newConfigPath) {
-          changed = true
-          config.setConfigurationPath(newConfigPath)
-          config.save()
-        }
-      }
-
-      // reload configuration when new config path is detected
-      if (changed) {
-        try {
-          ConfigurationAsCode.get().configure()
-        } catch (Exception ex) {
-          // set failed to yes
-          failed = true
-          msg = ex.toString()
-        }
-      }
-
-      def json = JsonOutput.toJson([
-        changed: changed,
-        failed: failed,
-        msg: msg
-      ])
-
-      return json.toString()
+      import io.jenkins.plugins.casc.ConfigurationAsCode;
+      ConfigurationAsCode.get().configure()
     url: "{{ jenkins_url }}"
     user: "{{ jenkins_user }}"
     password: "{{ jenkins_password }}"
+    validate_certs: no
+  register: reconfig_result
+
+- debug: 
+    msg: "{{ reconfig_result }}"

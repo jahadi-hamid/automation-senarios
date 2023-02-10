@@ -9,8 +9,8 @@ minio_storage_path: /data
 minio_user: minio
 minio_group: minio
 minio_svc_path: /etc/systemd/system/minio.service
-minio_access_key: "sdf3vfa65asdfa"
-minio_secret_key: "asdf456vfgHasdfg415YT"
+minio_access_key: "sdf3vfa6#asED@5asdfa"
+minio_secret_key: "asdf456vfgHasdfa5GTag415YT"
 minio_server_env_extra: ""
 minio_server_opts: ""
 minio_drive:
