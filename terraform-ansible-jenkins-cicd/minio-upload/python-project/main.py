@@ -10,7 +10,7 @@ templates = Jinja2Templates(directory='templates')
 
 
 client = Minio(
-        "127.0.0.1:9000",
+        os.environ['MINIO_HOST'],
         access_key=os.environ['ACCESSKEY'],
         secret_key=os.environ['SECRETKEY'],
         secure=False

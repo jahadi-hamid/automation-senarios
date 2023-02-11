@@ -1,0 +1,5 @@
+[minio_Servers]
+minio-0  ansible_host=188.121.100.177 ansible_user=ubuntu  ansible_ssh_private_key_file=/root/.ssh/arvan_rsa  ansible_become=true
+minio-1  ansible_host=188.121.100.181 ansible_user=ubuntu  ansible_ssh_private_key_file=/root/.ssh/arvan_rsa  ansible_become=true
+minio-2  ansible_host=188.121.100.26 ansible_user=ubuntu  ansible_ssh_private_key_file=/root/.ssh/arvan_rsa  ansible_become=true
+minio-3  ansible_host=188.121.103.239 ansible_user=ubuntu  ansible_ssh_private_key_file=/root/.ssh/arvan_rsa  ansible_become=true
