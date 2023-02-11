@@ -16,7 +16,6 @@ variable "ip_range" {
 }
 variable "home_project" {
   type = string
-  default = "/home/h.jahadi/MyGitRepo/automation-senarios/terraform-ansible-jenkins-cicd"
 }
 variable "cluster_key_path" {
   type    = string

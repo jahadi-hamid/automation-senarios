@@ -33,6 +33,7 @@ module "cluster-vm" {
   cluster_number = local.module_instances[count.index].count
   cluster_region = var.region
   ip_range = var.ip_range
+  home_project = var.home_project
   cluster_key_path = var.key_path
   cluster_user_name = var.user_name
   cluster_ssh-keyname  = module.infra-ssh-net-module.get-ssh-key.name

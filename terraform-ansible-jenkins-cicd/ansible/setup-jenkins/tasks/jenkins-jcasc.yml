@@ -39,3 +39,30 @@
 
 - debug: 
     msg: "{{ reconfig_result }}"
+
+- name: 20 second pause
+  pause:
+    seconds: 20
+    
+- name: Auto Approve Jenkins scripts
+  community.general.jenkins_script:
+    script: |
+      import jenkins.model.Jenkins;
+      import org.jenkinsci.plugins.scriptsecurity.scripts.ScriptApproval;
+
+      def jenkins = Jenkins.getInstance();
+      def scriptApproval = jenkins.getExtensionList(ScriptApproval.class).get(0);
+      def pendingScripts = scriptApproval.getPendingScripts();
+
+      pendingScripts.each { script ->
+        scriptApproval.approveScript(script.getHash())
+        
+      }
+    url: "{{ jenkins_url }}"
+    user: "{{ jenkins_user }}"
+    password: "{{ jenkins_password }}"
+    validate_certs: no
+  register: scriptapprove_result
+
+- debug: 
+    msg: "{{ scriptapprove_result }}"

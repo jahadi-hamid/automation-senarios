@@ -1,2 +1,2 @@
 [jenkins_Servers]
-jenkins-0  ansible_host=188.121.100.63 ansible_user=ubuntu  ansible_ssh_private_key_file=/root/.ssh/arvan_rsa  ansible_become=true
+jenkins-0  ansible_host=188.121.102.78 ansible_user=ubuntu  ansible_ssh_private_key_file=/root/.ssh/arvan_rsa  ansible_become=true

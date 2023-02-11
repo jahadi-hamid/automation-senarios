@@ -121,15 +121,3 @@ jobs:
       import jenkins.model.*;
       Jenkins.instance.getItemByFullName('job-dsl/create-all').scheduleBuild()
 
-  - script: >
-      import jenkins.model.Jenkins;
-      import org.jenkinsci.plugins.scriptsecurity.scripts.ScriptApproval;
-
-      def jenkins = Jenkins.getInstance();
-      def scriptApproval = jenkins.getExtensionList(ScriptApproval.class).get(0);
-      def pendingScripts = scriptApproval.getPendingScripts();
-
-      pendingScripts.each { script ->
-        scriptApproval.approveScript(script.getHash())
-        println("Approved script: " + script.getScript())
-      }
