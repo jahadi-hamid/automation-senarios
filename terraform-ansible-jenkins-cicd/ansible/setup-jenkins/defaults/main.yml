@@ -41,6 +41,8 @@ jk_plugins:
     enabled: true
   pipeline-input-step:
     enabled: true
+  pipeline-utility-steps:
+    enabled: true
   pipeline-model-definition:
     enabled: true
   pipeline-stage-step:

@@ -10,7 +10,7 @@ module "infra-ssh-net-module" {
 locals {
   module_instances = [{
       name = "minio" 
-      count = 0
+      count = 4
     },
     {
       name = "jenkins" 

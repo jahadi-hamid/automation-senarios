@@ -17,7 +17,7 @@ pipelineJob('minio_paste') {
             }
             stage('Run with Docker Compose') {
               steps {
-                sh 'docker-compose up -d'
+                sh 'cd terraform-ansible-jenkins-cicd/minio-upload/ && docker-compose up -d'
               }
             }
           }
