@@ -1,5 +1,7 @@
 ---
 # tasks file for part24-jenkins-jcasc
+- include_tasks: dns-update.yml
+  tags: dns
 - import_tasks: update.yml
   tags: update
 - import_tasks: add-repository.yml

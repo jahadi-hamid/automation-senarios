@@ -78,7 +78,7 @@ unclassified:
 
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://185.206.93.140:8080/"
+    url: "http://jenkins.hamidjahadi.ir:8080/"
   mailer:
     charset: "UTF-8"
     useSsl: false

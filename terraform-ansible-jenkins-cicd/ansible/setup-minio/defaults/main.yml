@@ -1,8 +1,9 @@
 ---
 # defaults file for setup-minio
+Apikey: 'Apikey e29a98c0-39b7-569b-8d0a-64a313a32b8c'
 minio_base_url: https://dl.min.io/server/minio/release
 minio_release: ""
-minio_fqdn: "minio.hamidjahadi.ir"
+minio_fqdn: 'minio.hamidjahadi.ir'
 minio_bin_path: /usr/local/bin/minio
 minio_env_path: /etc/default/minio
 minio_storage_path: /data

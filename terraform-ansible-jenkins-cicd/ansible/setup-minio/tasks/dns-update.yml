@@ -1,0 +1,23 @@
+- name: Create json of minio IPs
+  vars:
+    ip_list: ""
+  set_fact:
+        ip_list: "{{ ip_list }}{\"\\\"ip\\\":\\\"{{ hostvars[item]['ansible_host'] }}\\\"}," 
+  run_once: true
+  with_items: "{{ groups['all'] }}"
+  tags: 
+    - dns
+
+- name: Print IP list
+  set_fact:
+    ip_list_string: "{{ ip_list[:-1] }}"
+  run_once: true
+  tags: 
+    - dns
+- name: Update DNS record of minio address
+  script:
+    cmd: "files/update-dns.sh -a \"{{Apikey}}\" -d \"{{minio_fqdn}}\" -i {{ip_list_string}}"
+  delegate_to: localhost
+  run_once: true
+  tags: 
+    - dns

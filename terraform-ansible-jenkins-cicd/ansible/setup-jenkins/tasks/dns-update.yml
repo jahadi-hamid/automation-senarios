@@ -1,0 +1,31 @@
+- name: Create json of jenkins IPs
+  vars:
+    ip_list: ""
+  set_fact:
+        ip_list: "{{ ip_list }}{\"\\\"ip\\\":\\\"{{ hostvars[item]['ansible_host'] }}\\\"}," 
+  run_once: true
+  with_items: "{{ groups['all'] }}"
+  tags: 
+    - dns
+
+- name: clean list
+  set_fact:
+    ip_list_string: "{{ ip_list[:-1] }}"
+  run_once: true
+  tags: 
+    - dns
+- name: Update DNS record of jenkins address
+  script:
+    cmd: "files/update-dns.sh -a \"{{Apikey}}\" -d \"{{jenkins_fqdn}}\" -i {{ip_list_string}}"
+  delegate_to: localhost
+  run_once: true
+  tags: 
+    - dns
+
+- name: Update DNS record of jenkins address
+  script:
+    cmd: "files/update-dns.sh -a \"{{Apikey}}\" -d \"paste.hamidjahadi.ir\" -i {{ip_list_string}}"
+  delegate_to: localhost
+  run_once: true
+  tags: 
+    - dns

@@ -1,0 +1,5 @@
+[minio_Servers]
+node-01 ansible_host=192.168.100.101
+node-02 ansible_host=192.168.100.102
+node-03 ansible_host=192.168.100.103
+node-04 ansible_host=192.168.100.104
