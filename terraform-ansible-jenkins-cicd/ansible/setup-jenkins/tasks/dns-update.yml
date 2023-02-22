@@ -2,7 +2,7 @@
   vars:
     ip_list: ""
   set_fact:
-        ip_list: "{{ ip_list }}{\"\\\"ip\\\":\\\"{{ hostvars[item]['ansible_host'] }}\\\"}," 
+        ip_list: "{{ ip_list }}{\\\"ip\\\":\\\"{{ hostvars[item]['ansible_host'] }}\\\"}," 
   run_once: true
   with_items: "{{ groups['all'] }}"
   tags: 
@@ -14,17 +14,18 @@
   run_once: true
   tags: 
     - dns
+
 - name: Update DNS record of jenkins address
   script:
-    cmd: "files/update-dns.sh -a \"{{Apikey}}\" -d \"{{jenkins_fqdn}}\" -i {{ip_list_string}}"
+    cmd: "files/update-dns.sh -a \"{{(lookup('env','ARVANAPIKEY'))}}\" -d \"{{jenkins_fqdn}}\" -i {{ip_list_string}}"
   delegate_to: localhost
   run_once: true
   tags: 
     - dns
 
-- name: Update DNS record of jenkins address
+- name: Update DNS record of application address
   script:
-    cmd: "files/update-dns.sh -a \"{{Apikey}}\" -d \"paste.hamidjahadi.ir\" -i {{ip_list_string}}"
+    cmd: "files/update-dns.sh -a \"{{(lookup('env','ARVANAPIKEY'))}}\" -d \"paste.hamidjahadi.ir\" -i {{ip_list_string}}"
   delegate_to: localhost
   run_once: true
   tags: 

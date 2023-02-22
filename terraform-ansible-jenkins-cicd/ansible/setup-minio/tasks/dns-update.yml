@@ -16,7 +16,7 @@
     - dns
 - name: Update DNS record of minio address
   script:
-    cmd: "files/update-dns.sh -a \"{{Apikey}}\" -d \"{{minio_fqdn}}\" -i {{ip_list_string}}"
+    cmd: "files/update-dns.sh -a \"{{(lookup('env','ARVANAPIKEY'))}}\" -d \"{{minio_fqdn}}\" -i {{ip_list_string}}"
   delegate_to: localhost
   run_once: true
   tags: 

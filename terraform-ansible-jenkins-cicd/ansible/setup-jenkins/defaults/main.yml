@@ -1,7 +1,6 @@
 ---
 # defaults file for part24-jenkins-jcasc
-Apikey: 'Apikey e29a98c0-39b7-569b-8d0a-64a313a32b8c'
-jenkins_fqdn: jenkins.hamidjahadi.ir
+jenkins_fqdn: 'jenkins.hamidjahadi.ir'
 http_proxy: "http://78.157.56.123:3128"
 jenkins_user: "admin"
 jenkins_url: "http://localhost:8080"

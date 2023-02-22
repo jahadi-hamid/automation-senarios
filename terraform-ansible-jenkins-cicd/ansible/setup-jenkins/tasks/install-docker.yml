@@ -23,6 +23,11 @@
     autoremove: true
     pkg: "{{ docker_pkgs }}"
 
+- name: copy docker daemon.json
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+
 - name: Add http proxy to Docker.service
   lineinfile:
     path: /lib/systemd/system/docker.service
