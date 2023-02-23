@@ -21,7 +21,7 @@ variable "disksize" {
 }
 variable "abrak-plan" {
   type    = string
-  default = "g3-4-2-0"
+  default = "g2-4-2-0"
 }
 variable "ssh-keyname" {
   type = string

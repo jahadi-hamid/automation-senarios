@@ -14,9 +14,7 @@ resource "arvan_iaas_abrak" "myabrak" {
 
 
 resource "arvan_iaas_network_attach" "private-network-attach" {
-depends_on = [
-  arvan_iaas_abrak.myabrak
-]
+
   region       = var.abrak-region
   abrak_uuid   = data.arvan_iaas_abrak.get_abrak_id.id
   network_uuid = var.network_uuid

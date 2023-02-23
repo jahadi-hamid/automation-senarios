@@ -14,5 +14,5 @@ resource "arvan_iaas_subnet" "mysubnet" {
     "8.8.8.8",
     "4.2.2.4"
   ]
-  enable_dhcp = false
+  enable_dhcp = true
 }
