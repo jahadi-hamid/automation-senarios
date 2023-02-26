@@ -2,21 +2,15 @@
   vars:
     ip_list: ""
   set_fact:
-        ip_list: "{{ ip_list }}{\"\\\"ip\\\":\\\"{{ hostvars[item]['ansible_host'] }}\\\"}," 
+        ip_list: |
+          '{%- for host in groups['all'] -%}{"ip":"{{hostvars[host]['ansible_host']}}"}{%- if not loop.last -%},{%- endif -%}{%- endfor -%}'
   run_once: true
-  with_items: "{{ groups['all'] }}"
   tags: 
     - dns
 
-- name: Print IP list
-  set_fact:
-    ip_list_string: "{{ ip_list[:-1] }}"
-  run_once: true
-  tags: 
-    - dns
 - name: Update DNS record of minio address
   script:
-    cmd: "files/update-dns.sh -a \"{{(lookup('env','ARVANAPIKEY'))}}\" -d \"{{minio_fqdn}}\" -i {{ip_list_string}}"
+    cmd: "files/update-dns.sh -a \"{{(lookup('env','ARVANAPIKEY'))}}\" -d \"{{minio_fqdn}}\" -i {{ip_list}}"
   delegate_to: localhost
   run_once: true
   tags: 

@@ -1,4 +1,31 @@
 ---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Installing PreReq pkgs
+      apt:
+        autoremove: yes
+        pkg: 
+          - jq
+      delegate_to: localhost
+      run_once: true 
+      when:
+        - ansible_distribution|string in ['Ubuntu' ,'Debian']
+      tags: 
+        - dns
+
+    - name: Installing PreReq pkgs
+      yum:
+        state: present
+        name: 
+          - jq
+      delegate_to: localhost
+      run_once: true 
+      when:
+        - ansible_distribution|string in ['Fedora' ,'Redhat' ,'CentOS']
+      tags: 
+        - dns
+        
 - hosts: minio_Servers
   become: true
   roles:

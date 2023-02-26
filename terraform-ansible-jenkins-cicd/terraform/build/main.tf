@@ -58,3 +58,4 @@ resource "null_resource" "ansible_run" {
     provisioner "local-exec" {
      command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ${var.home_project}/ansible/setup-${[for cluster in module.cluster-vm : cluster.cluster_name if length(cluster.cluster-publicip) > 0 ][count.index]}/inventory ${var.home_project}/ansible/setup-${[for cluster in module.cluster-vm : cluster.cluster_name if length(cluster.cluster-publicip) > 0 ][count.index]}.yml "
    } 
+}
