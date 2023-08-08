@@ -25,7 +25,8 @@ if [ "$(echo $domain_name | awk -F"." '{print $3}')" == "" ] ; then
 else
         subdomain=$(echo $domain_name | awk -F"." '{print $1}')
 fi
-
+echo $root_domain
+echo $subdomain
 ### get current IP From Arvancloud DNS
 data=$(curl -s -L -X GET \
    "https://napi.arvancloud.ir/cdn/4.0/domains/$root_domain/dns-records" \
@@ -42,7 +43,7 @@ domain_id=$(echo $data |  jq '.data[] | select(.type=="a")   |  select(.name=="'
        -H "Authorization: ${TOKEN}" \
        -d "{ \"name\": \"$subdomain\", \"type\": \"a\", \"value\": [$IP]}")
    else
-       PutNewIP=$(curl -s -L -X POST "https://napi.arvancloud.ir/cdn/4.0/domains/$root_domain/dns-records/" \
+       PutNewIP=$(curl -s -L -X POST "https://napi.arvancloud.ir/cdn/4.0/domains/$root_domain/dns-records" \
        -H "Content-Type: application/json" \
        -H "Accept: application/json" \
        -H "Authorization: ${TOKEN}" \

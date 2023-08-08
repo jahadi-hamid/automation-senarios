@@ -2,7 +2,7 @@
 - hosts: localhost
   become: true
   tasks:
-    - name: Installing PreReq pkgs
+    - name: Installing PreReq pkgs (jq deb)
       apt:
         autoremove: yes
         pkg: 
@@ -14,7 +14,7 @@
       tags: 
         - dns
 
-    - name: Installing PreReq pkgs
+    - name: Installing PreReq pkgs (jq rpm)
       yum:
         state: present
         name: 

@@ -11,19 +11,19 @@ module "ubuntu-vm" {
   extraip = false
 }
 
-resource "local_file" "vm_hosts" {
-    count =  var.cluster_number > 0 ? 1 : 0
-    depends_on = [
-      module.ubuntu-vm
-    ]
-  filename = "${var.home_project}/ansible/setup-${var.cluster_name}/files/${var.cluster_name}.hosts"
-  content = templatefile("../templates/hosts.tmpl",
-    {
-      vm_hostname = [for vm in module.ubuntu-vm : vm.details-myabrak-id.name],
-      vm_prvip    = [for vm in module.ubuntu-vm : vm.privateip],
-    }
-  )
-}
+# resource "local_file" "vm_hosts" {
+#     count =  var.cluster_number > 0 ? 1 : 0
+#     depends_on = [
+#       module.ubuntu-vm
+#     ]
+#   filename = "${var.home_project}/ansible/setup-${var.cluster_name}/files/${var.cluster_name}.hosts"
+#   content = templatefile("../templates/hosts.tmpl",
+#     {
+#       vm_hostname = [for vm in module.ubuntu-vm : vm.details-myabrak-id.name],
+#       vm_prvip    = [for vm in module.ubuntu-vm : vm.privateip],
+#     }
+#   )
+# }
 
 # resource "time_sleep" "wait_60_seconds" {
 #   depends_on = [local_file.vm_hosts]

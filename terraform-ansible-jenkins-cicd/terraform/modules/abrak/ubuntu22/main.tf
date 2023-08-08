@@ -13,14 +13,14 @@ resource "arvan_iaas_abrak" "myabrak" {
 }
 
 
-resource "arvan_iaas_network_attach" "private-network-attach" {
+# resource "arvan_iaas_network_attach" "private-network-attach" {
 
-  region       = var.abrak-region
-  abrak_uuid   = data.arvan_iaas_abrak.get_abrak_id.id
-  network_uuid = var.network_uuid
-  ip           = cidrhost("${var.ip_range}", "${var.ip_index + var.abrak-number + 2}")
+#   region       = var.abrak-region
+#   abrak_uuid   = data.arvan_iaas_abrak.get_abrak_id.id
+#   network_uuid = var.network_uuid
+#   ip           = cidrhost("${var.ip_range}", "${var.ip_index + var.abrak-number + 2}")
 
-}
+# }
 
 resource "arvan_iaas_abrak_action" "myabrak-extrapublicip" {
   count =  var.extraip ? 1 : 0
